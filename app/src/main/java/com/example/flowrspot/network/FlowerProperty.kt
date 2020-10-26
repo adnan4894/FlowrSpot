@@ -5,5 +5,6 @@ data class FlowerProperty(
     val name: String,
     val latin_name: String,
     val sightings: Int,
+    val profile_picture: String,
     val favorite: Boolean
 )
