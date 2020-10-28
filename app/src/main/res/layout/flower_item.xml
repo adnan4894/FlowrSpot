@@ -16,8 +16,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="212dp"
-            android:layout_height="284dp"
+            android:layout_width="185dp"
+            android:layout_height="230dp"
+            android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,14 +28,64 @@
                 android:id="@+id/flowerImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:scaleType="centerCrop"
+                android:contentDescription="@string/flower"
+                android:scaleType="fitXY"
                 app:imageUrl="@{flower.profile_picture}"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/flower" />
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/flowerImage3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:contentDescription="@string/flower"
+                android:scaleType="fitXY"
+                android:tintMode="src_in"
+                app:imageUrl="@{flower.profile_picture}"
+                app:tint="#000000"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:alpha="1"
+                android:gravity="center_horizontal"
+                android:text="@{flower.name}"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/latin_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="120dp"
+                android:alpha="1"
+                android:gravity="center_horizontal"
+                android:text="@{flower.latin_name}"
+                android:textColor="#D8C8C8" />
+
+            <TextView
+                android:id="@+id/sightins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="163dp"
+                android:text="@string/_127_sightings"
+                android:textColor="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/favourite_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:alpha="1"
+                android:scrollbarSize="4dp"
+                app:srcCompat="@drawable/ic_group"
+                android:contentDescription="@string/favourite_image" />
 
         </androidx.cardview.widget.CardView>
 

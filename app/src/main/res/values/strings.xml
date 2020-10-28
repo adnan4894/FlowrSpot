@@ -2,4 +2,16 @@
     <string name="app_name">FlowrSpot</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="flower">flower image</string>
+    <string name="search">Looking for something specific?</string>
+    <string name="imagetext">Discover flowers around you</string>
+    <string name="_127_sightings">127 sightings</string>
+    <string name="explore_more_between_more_then_8_427_sightins">Explore more between more then 8.427 sightins</string>
+    <string name="favourites">favourites</string>
+    <string name="comment">Comment</string>
+    <string name="newsight">newsight</string>
+    <string name="sighting">Sighting</string>
+    <string name="flowers_image">flowers image</string>
+    <string name="tree_dots_image">tree dots image</string>
+    <string name="logo_image">Logo image</string>
+    <string name="favourite_image">favourite image</string>
 </resources>

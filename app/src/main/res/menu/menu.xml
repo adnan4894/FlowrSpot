@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_favorites_icons"
+        android:title="@string/favourites" />
+    <item
+        android:icon="@drawable/ic_comment_icon"
+        android:title="@string/comment" />
+    <item
+        android:icon="@drawable/ic_tab_icon_newsighting_off"
+        android:title="@string/newsight" />
+    <item
+        android:icon="@drawable/ic_new_sighting_icon"
+        android:title="@string/sighting" />
+</menu>

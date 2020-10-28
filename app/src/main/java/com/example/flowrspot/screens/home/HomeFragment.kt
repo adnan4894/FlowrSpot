@@ -30,14 +30,10 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.flowersGrid.adapter = FlowerGridAdapter()
 
-
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                CoroutineScope(Dispatchers.Main).launch {
-                    viewModel.searchForFlowers(query)
-                }
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
