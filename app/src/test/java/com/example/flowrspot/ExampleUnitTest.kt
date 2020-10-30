@@ -1,5 +1,7 @@
 package com.example.flowrspot
 
+import com.example.flowrspot.network.Flowers
+import com.example.flowrspot.network.FlowrspotApi
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,7 +13,6 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+     fun addition_isCorrect() {
     }
 }

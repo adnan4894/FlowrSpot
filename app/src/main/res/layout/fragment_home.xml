@@ -55,7 +55,7 @@
             <SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/imageView"
                 android:layout_marginLeft="34dp"
                 android:layout_marginRight="34dp"
@@ -66,6 +66,9 @@
                 android:inputType="text"
                 android:queryHint="@string/search"
                 app:defaultQueryHint="@string/search"
+                android:iconifiedByDefault="false"
+                app:iconifiedByDefault="false"
+                app:queryHint="Looking for something specific?"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="1dp">
 
