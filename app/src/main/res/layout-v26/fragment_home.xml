@@ -66,6 +66,7 @@
                 android:inputType="text"
                 android:queryHint="@string/search"
                 app:defaultQueryHint="@string/search"
+                android:defaultFocusHighlightEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="1dp">
 

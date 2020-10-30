@@ -1,4 +1,4 @@
-package com.example.flowrspot
+package com.example.flowrspot.util
 
 import android.widget.ImageView
 import androidx.core.net.toUri

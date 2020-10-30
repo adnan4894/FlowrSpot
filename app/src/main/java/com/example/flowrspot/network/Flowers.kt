@@ -1,3 +1,3 @@
 package com.example.flowrspot.network
 
-data class Flowers(val flowers:List<FlowerProperty>)
+data class Flowers(var flowers:MutableList<FlowerProperty>)

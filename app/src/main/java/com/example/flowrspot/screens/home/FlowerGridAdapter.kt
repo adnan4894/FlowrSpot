@@ -17,13 +17,14 @@ class FlowerGridAdapter :ListAdapter <FlowerProperty, FlowerGridAdapter.FlowerPr
         }
     }
 
+
     companion object DiffCallback : DiffUtil.ItemCallback<FlowerProperty>() {
         override fun areItemsTheSame(oldItem: FlowerProperty, newItem: FlowerProperty): Boolean {
-            return oldItem === newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: FlowerProperty, newItem: FlowerProperty): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
     }
 
@@ -41,6 +42,7 @@ class FlowerGridAdapter :ListAdapter <FlowerProperty, FlowerGridAdapter.FlowerPr
     ) {
         val flowerProperty = getItem(position)
         holder.bind(flowerProperty)
+
     }
 
 }

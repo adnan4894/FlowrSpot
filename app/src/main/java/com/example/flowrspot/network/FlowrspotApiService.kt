@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 
 interface FlowrspotApiService {
     @GET("api/v1/flowers")
-    fun getFlowers():
+    fun getFlowers(@Query("page") type: Int?):
             Deferred<Flowers>
 
     @GET("api/v1/flowers/search")

@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.example.flowrspot.R
 import com.example.flowrspot.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +31,8 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.flowersGrid.adapter = FlowerGridAdapter()
 
+
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -43,6 +46,14 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
+
+        binding.flowersGrid.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                    if(!recyclerView.canScrollVertically(1))viewModel.loadNextpage()
+            }
+        })
+
 
         return binding.root
     }
