@@ -2,7 +2,6 @@ package com.example.flowrspot.screens.home
 
 import com.example.flowrspot.network.FlowerProperty
 import com.example.flowrspot.network.FlowrspotApi
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test

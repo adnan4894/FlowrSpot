@@ -6,12 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.flowrspot.network.FlowerProperty
-import com.example.flowrspot.network.Flowers
 import com.example.flowrspot.network.FlowrspotApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 class HomeViewModel : ViewModel() {

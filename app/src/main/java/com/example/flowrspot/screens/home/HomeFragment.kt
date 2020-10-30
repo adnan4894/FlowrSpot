@@ -34,18 +34,17 @@ class HomeFragment : Fragment() {
 
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 CoroutineScope(Dispatchers.Main).launch {
                     viewModel.searchForFlowers(newText)
                 }
                 return true
             }
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
         })
+
 
         binding.flowersGrid.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
