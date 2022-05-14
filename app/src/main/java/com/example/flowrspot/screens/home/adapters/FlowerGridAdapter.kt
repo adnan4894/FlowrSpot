@@ -1,4 +1,4 @@
-package com.example.flowrspot.screens.home
+package com.example.flowrspot.screens.home.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,17 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flowrspot.databinding.FlowerItemBinding
-import com.example.flowrspot.network.FlowerProperty
+import com.example.flowrspot.models.FlowerProperty
 
-class FlowerGridAdapter :ListAdapter <FlowerProperty, FlowerGridAdapter.FlowerPropertyViewHolder>(DiffCallback) {
-
-    class FlowerPropertyViewHolder(private var binding: FlowerItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun  bind (flowerProperty:FlowerProperty) {
-            binding.flower = flowerProperty
-            binding.executePendingBindings()
-        }
-    }
-
+class FlowerGridAdapter :ListAdapter <FlowerProperty, FlowerPropertyViewHolder>(
+    DiffCallback
+) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<FlowerProperty>() {
         override fun areItemsTheSame(oldItem: FlowerProperty, newItem: FlowerProperty): Boolean {
@@ -42,7 +36,6 @@ class FlowerGridAdapter :ListAdapter <FlowerProperty, FlowerGridAdapter.FlowerPr
     ) {
         val flowerProperty = getItem(position)
         holder.bind(flowerProperty)
-
     }
 
 }

@@ -1,26 +1,31 @@
 package com.example.flowrspot.screens.home
 
-
-import android.util.Log
+import android.content.Context
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.flowrspot.network.FlowerProperty
-import com.example.flowrspot.network.FlowrspotApi
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.viewModelScope
+import com.example.flowrspot.database.AppDatabase
+import com.example.flowrspot.models.FlowerProperty
+import com.example.flowrspot.network.FlowerAPI
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val appDatabase: AppDatabase
+) : ViewModel() {
 
 
-class HomeViewModel : ViewModel() {
 
-    private var _flowers = MutableLiveData<List<FlowerProperty>>()
+    private var _flowers = MutableLiveData<List<FlowerProperty>>(listOf())
     val flowers: LiveData<List<FlowerProperty>>
         get() = _flowers
-
-    private var _flower = MutableLiveData<FlowerProperty>()
-    val flower: LiveData<FlowerProperty>
-        get() = _flower
 
     private var _paginationLoading = MutableLiveData<Int>()
     val paginationLoading: LiveData<Int>
@@ -28,41 +33,41 @@ class HomeViewModel : ViewModel() {
 
     private var page: Int = 1
 
-
-
     init {
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             getAllFlowers()
         }
     }
 
 
-    private suspend  fun getAllFlowers() {
+    private suspend fun getAllFlowers() {
         try {
-            _paginationLoading.value = 0
-
-            if(_flowers.value.isNullOrEmpty())
-                _flowers.value = FlowrspotApi.flowrsportservice.getFlowers(page).await().flowers
-
-            else _flowers.value = _flowers.value!! + FlowrspotApi.flowrsportservice.getFlowers(page).await().flowers
-
-            _paginationLoading.value = 8
-
+            _paginationLoading.postValue(View.VISIBLE)
+            _flowers.postValue(_flowers.value?.plus(FlowerAPI.flowrsportservice.getFlowers(page).await().flowers))
+            _paginationLoading.postValue(View.GONE)
         }
-        catch (t: Throwable) { Log.i("error",t.message!!) }
+        catch (t: Throwable) {
+            t.message?.let { message ->Firebase.crashlytics.log(message)}
+        }
     }
 
 
-    suspend fun  searchForFlowers (searchBy:String?) {
-         page = 1
-         try { _flowers.value = FlowrspotApi.flowrsportservice.searchFlowers(searchBy).await().flowers }
-         catch (t: Throwable) { Log.i("error",t.message!!) }
+     fun searchForFlowers (searchBy:String?) {
+         viewModelScope.launch(Dispatchers.IO) {
+             page = 1
+             try {
+                 _flowers.postValue(
+                     FlowerAPI.flowrsportservice.searchFlowers(searchBy).await().flowers
+                 )
+             } catch (t: Throwable) {
+                 t.message?.let { message -> Firebase.crashlytics.log(message) }
+             }
+         }
      }
 
-
-    fun  loadNextpage () {
+    fun loadNextpage () {
          page ++
-         CoroutineScope(Dispatchers.Main).launch {
+         viewModelScope.launch(Dispatchers.IO) {
              getAllFlowers()
          }
      }

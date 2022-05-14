@@ -1,7 +1,11 @@
-package com.example.flowrspot.network
+package com.example.flowrspot.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class FlowerProperty(
-    val id: Int,
+    @PrimaryKey val id: Int,
     val name: String,
     val latin_name: String,
     val sightings: Int,

@@ -5,8 +5,8 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.flowrspot.network.FlowerProperty
-import com.example.flowrspot.screens.home.FlowerGridAdapter
+import com.example.flowrspot.models.FlowerProperty
+import com.example.flowrspot.screens.home.adapters.FlowerGridAdapter
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
