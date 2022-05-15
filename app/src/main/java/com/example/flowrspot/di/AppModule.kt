@@ -11,11 +11,11 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent :: class)
+@InstallIn(SingletonComponent::class)
 object RoomDatabaseModule {
     @Singleton
     @Provides
-    fun provideDatabase(@ApplicationContext context: Context) : AppDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java, "FlowersDatabase"

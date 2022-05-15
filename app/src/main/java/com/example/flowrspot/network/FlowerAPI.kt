@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 private val BASE_URL = "https://flowrspot-api.herokuapp.com/"
 
-private  val moshi = Moshi.Builder()
+private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
@@ -20,7 +20,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 object FlowerAPI {
-    val flowrsportservice : FlowrspotApiService by lazy {
+    val flowrsportservice: FlowrspotApiService by lazy {
         retrofit.create(FlowrspotApiService::class.java)
     }
 }

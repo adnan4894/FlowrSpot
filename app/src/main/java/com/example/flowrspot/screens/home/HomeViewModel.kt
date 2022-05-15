@@ -1,75 +1,59 @@
 package com.example.flowrspot.screens.home
 
-import android.content.Context
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+
+import com.example.flowrspot.base.BaseViewModel
 import com.example.flowrspot.database.AppDatabase
-import com.example.flowrspot.models.FlowerProperty
 import com.example.flowrspot.network.FlowerAPI
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val appDatabase: AppDatabase
-) : ViewModel() {
+) : BaseViewModel<HomeEvents, HomeFullScreenState>(HomeFullScreenState()) {
 
-
-
-    private var _flowers = MutableLiveData<List<FlowerProperty>>(listOf())
-    val flowers: LiveData<List<FlowerProperty>>
-        get() = _flowers
-
-    private var _paginationLoading = MutableLiveData<Int>()
-    val paginationLoading: LiveData<Int>
-        get() = _paginationLoading
-
-    private var page: Int = 1
-
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            getAllFlowers()
+    override suspend fun handleEvent(event: HomeEvents): HomeFullScreenState {
+        return when (event) {
+            is LoadHomeEvent -> {
+                getAllFlowers()
+            }
+            is SearchHomeEvent -> {
+                searchForFlowers(event.searchBy)
+            }
+            is ScrolledToBottomHomeEvent -> {
+                getAllFlowers()
+            }
         }
     }
 
-
-    private suspend fun getAllFlowers() {
-        try {
-            _paginationLoading.postValue(View.VISIBLE)
-            _flowers.postValue(_flowers.value?.plus(FlowerAPI.flowrsportservice.getFlowers(page).await().flowers))
-            _paginationLoading.postValue(View.GONE)
+    private suspend fun getAllFlowers(): HomeFullScreenState {
+        screenState.value?.let {
+            try {
+                val getFlowers = FlowerAPI.flowrsportservice.getFlowers(it.page).await().flowers
+                return it.copy(flowers = it.flowers.plus(getFlowers), paginationLoading = View.GONE, page = it.page + 1)
+            } catch (t: Throwable) {
+                t.message?.let { message -> Firebase.crashlytics.log(message) }
+            }
         }
-        catch (t: Throwable) {
-            t.message?.let { message ->Firebase.crashlytics.log(message)}
-        }
+        return HomeFullScreenState()
     }
 
 
-     fun searchForFlowers (searchBy:String?) {
-         viewModelScope.launch(Dispatchers.IO) {
-             page = 1
-             try {
-                 _flowers.postValue(
-                     FlowerAPI.flowrsportservice.searchFlowers(searchBy).await().flowers
-                 )
-             } catch (t: Throwable) {
-                 t.message?.let { message -> Firebase.crashlytics.log(message) }
-             }
-         }
-     }
-
-    fun loadNextpage () {
-         page ++
-         viewModelScope.launch(Dispatchers.IO) {
-             getAllFlowers()
-         }
-     }
-
+    private suspend fun searchForFlowers(searchBy: String?): HomeFullScreenState {
+        screenState.value?.let {
+            try {
+                val flowers = FlowerAPI.flowrsportservice.searchFlowers(searchBy).await().flowers
+                return it.copy(flowers = flowers, paginationLoading = View.GONE, page = 0)
+            } catch (t: Throwable) {
+                t.message?.let { message -> Firebase.crashlytics.log(message) }
+            }
+        }
+        return HomeFullScreenState()
+    }
 }
+
+
+

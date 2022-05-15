@@ -5,7 +5,7 @@ import com.example.flowrspot.databinding.FlowerItemBinding
 import com.example.flowrspot.models.FlowerProperty
 
 class FlowerPropertyViewHolder(private var binding: FlowerItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun  bind (flowerProperty: FlowerProperty) {
+    fun bind(flowerProperty: FlowerProperty) {
         binding.flower = flowerProperty
         binding.executePendingBindings()
     }
