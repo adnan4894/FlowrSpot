@@ -3,7 +3,7 @@ package com.example.flowrspot.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.flowrspot.models.FlowerProperty
+import com.example.flowrspot.screens.home.models.FlowerProperty
 
 @Dao
 interface FlowerDao {

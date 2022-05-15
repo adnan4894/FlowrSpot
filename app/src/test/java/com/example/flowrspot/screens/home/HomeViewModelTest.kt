@@ -1,6 +1,6 @@
 package com.example.flowrspot.screens.home
 
-import com.example.flowrspot.models.FlowerProperty
+import com.example.flowrspot.screens.home.models.FlowerProperty
 import com.example.flowrspot.network.FlowerAPI
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert

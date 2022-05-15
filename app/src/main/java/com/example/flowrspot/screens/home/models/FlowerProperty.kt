@@ -1,4 +1,4 @@
-package com.example.flowrspot.models
+package com.example.flowrspot.screens.home.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

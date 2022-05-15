@@ -1,13 +1,12 @@
 package com.example.flowrspot.screens.home
 
-import android.content.Context
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flowrspot.database.AppDatabase
-import com.example.flowrspot.models.FlowerProperty
+import com.example.flowrspot.screens.home.models.FlowerProperty
 import com.example.flowrspot.network.FlowerAPI
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase

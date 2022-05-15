@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flowrspot.databinding.FlowerItemBinding
-import com.example.flowrspot.models.FlowerProperty
+import com.example.flowrspot.screens.home.models.FlowerProperty
 
 class FlowerGridAdapter :ListAdapter <FlowerProperty, FlowerPropertyViewHolder>(
     DiffCallback
