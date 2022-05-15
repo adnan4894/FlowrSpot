@@ -15,7 +15,17 @@ MVVM cleanly separates the user interface from the application logic.
 Retrofit with Moshi for api request and converting json to Kotlin object.</br>
 Coroutines for maintaining a synchronous way of coding without dealing with hard readable callbacks.</br>
 Glide used as an Image loader.</br>
-RecyclerWiew is used for displaying list of flowers. At this point, RecyclerView is not necessary but, as the api data grow in the future it will be useful.</br>
+RecyclerView is used for displaying list of flowers. At this point, RecyclerView is not necessary but, as the api data grow in the future it will be useful.</br>
+Hilt used for dependency injection
+Room database
+Firebase crashlytics
+
+## Path for improvements
+- Seperate data layer (Network, Local)
+- Update Base classes with the error handling
+- Update memory menagment in the base fragments, viewmodels
+- Use room for offline mode
+- Add CI/CD
 
 ### Most of the recources used in this project are xml converted from svg for maintaining image quality
 

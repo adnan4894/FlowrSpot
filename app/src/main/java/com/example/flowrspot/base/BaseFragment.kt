@@ -41,4 +41,6 @@ abstract class BaseFragment<B : ViewDataBinding, ViewModel : BaseViewModel<Model
 
     protected abstract fun onLoad()
 
+    //Arhitecture in progress
+
 }

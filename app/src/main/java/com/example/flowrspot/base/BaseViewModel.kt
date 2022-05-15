@@ -25,5 +25,5 @@ abstract class BaseViewModel<Event, State : BaseFullScreenState>(initialStateVal
     }
 
     protected abstract suspend fun handleEvent(event: Event): State
-
+    //Arhitecture in progress
 }
