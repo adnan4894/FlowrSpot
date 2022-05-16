@@ -21,9 +21,9 @@ Room database
 Firebase crashlytics
 
 ## Path for improvements
-- Seperate data layer (Network, Local)
-- Update Base classes with the error handling
-- Update memory menagment in the base fragments, viewmodels
+- Separate data layer (Network, Local)
+- Update the error handling in the base classes.
+- Memory management should be updated in the base fragments and viewmodels
 - Use room for offline mode
 - Add CI/CD
 
